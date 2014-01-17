@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonCrawl", "DungeonCrawl\DungeonCrawl\DungeonCrawl.csproj", "{183692D3-FAA2-4AA4-9C52-F7056F42B704}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DungeonCrawlContent", "DungeonCrawl\DungeonCrawlContent\DungeonCrawlContent.contentproj", "{3B88827C-E61E-4F3B-999E-E2B9F85234AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{183692D3-FAA2-4AA4-9C52-F7056F42B704}.Debug|x86.ActiveCfg = Debug|x86
+		{183692D3-FAA2-4AA4-9C52-F7056F42B704}.Debug|x86.Build.0 = Debug|x86
+		{183692D3-FAA2-4AA4-9C52-F7056F42B704}.Release|x86.ActiveCfg = Release|x86
+		{183692D3-FAA2-4AA4-9C52-F7056F42B704}.Release|x86.Build.0 = Release|x86
+		{3B88827C-E61E-4F3B-999E-E2B9F85234AB}.Debug|x86.ActiveCfg = Debug|x86
+		{3B88827C-E61E-4F3B-999E-E2B9F85234AB}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
