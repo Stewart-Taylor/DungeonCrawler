@@ -16,7 +16,6 @@ using DungeonCrawl.Engine.InterFace;
 using DungeonCrawl.Menu.Game_Screens;
 
 
-
 #endregion
 
 namespace DungeonCrawl.Engine
@@ -24,7 +23,6 @@ namespace DungeonCrawl.Engine
 
     class Director
     {
-
         #region FIELD
 
         public static Random random = new Random();
@@ -39,7 +37,6 @@ namespace DungeonCrawl.Engine
 
         public bool dynamicCamera = false;
 
-
         private EffectManager effectManager;
 
         private Texture2D splatterTexture;
@@ -47,9 +44,7 @@ namespace DungeonCrawl.Engine
         private int splatterLimit = 100;
         private Color splatterColor;
 
-
         private int dungeonLevel = 1;
-
 
 
         RumbleManager rumbleManager;
@@ -72,29 +67,10 @@ namespace DungeonCrawl.Engine
 
         InputManager inputManager;
 
-
-
         private BarSlider staminaBar ;
         private BarSlider manaBar; 
 
         #endregion
-
-
-
-    
-
-
-
-
-        #region SETS
-
-
-
-
-
-        #endregion
-
-
 
 
         #region GETS
@@ -104,24 +80,20 @@ namespace DungeonCrawl.Engine
             return grid;
         }
 
-
         public RumbleManager getRumbleManager()
         {
             return rumbleManager;
         }
-
 
         public EffectManager getEffectManager()
         {
             return effectManager;
         }
 
-
         public int getDungeonLevel()
         {
             return dungeonLevel;
         }
-
 
         public Camera getCamera()
         {
@@ -143,7 +115,6 @@ namespace DungeonCrawl.Engine
             return characters;
         }
 
-
         #endregion
 
 
@@ -153,10 +124,8 @@ namespace DungeonCrawl.Engine
             splatterColor = Color.White;
         }
 
-
         public Director( ScreenManager sManager , GameScreen gameScreenT)
         {
-
             gameScreen = gameScreenT;
             screenManager = sManager;
 
@@ -168,9 +137,6 @@ namespace DungeonCrawl.Engine
             rumbleManager = new RumbleManager();
         }
 
-
-
-
         public void load(ContentManager contentT)
         {
             content = contentT;
@@ -181,12 +147,6 @@ namespace DungeonCrawl.Engine
             darknessBorder = content.Load<Texture2D>("Interface//DarknessBorder");
 
             interfaceDisplay.load(content);
-
-         
-
-
-
-            
 
             player = new Player(this, Vector2.Zero);
             player.load(content);
@@ -201,13 +161,11 @@ namespace DungeonCrawl.Engine
         }
 
 
-
         public void generateLevel()
         {
             levelObjects.Clear();
             treasure.Clear();
             characters.Clear();
-
 
             grid = new Grid(this);
             grid.load(content);
@@ -217,9 +175,6 @@ namespace DungeonCrawl.Engine
             posStart.Y += 64;
             player.setPosition(posStart);
 
-
-
-
             LevelObjectGenerator objectGenerator = new LevelObjectGenerator(this);
             effectManager = new EffectManager(content); // clears old particles
 
@@ -228,12 +183,10 @@ namespace DungeonCrawl.Engine
             objectGenerator.placeTraps();
             objectGenerator.placeTorches();
 
-           // objectGenerator.placeCobWeb();
+            // objectGenerator.placeCobWeb();
 
             miniMap.load(content);
         }
-
-
 
         public void addCharacter(Character character)
         {
@@ -247,38 +200,27 @@ namespace DungeonCrawl.Engine
             treasure.Add(gold);
         }
 
-
         public void addLevelObject(LevelObject levelObject)
         {
             levelObject.load(content);
             levelObjects.Add(levelObject);
         }
 
-
-
-
         private void levelComplete()
         {
             screenManager.addScreen(new LevelCompleteScreen(gameScreen, screenManager, this));
         }
 
-
         public  void newLevel()
         {
             dungeonLevel++;
             generateLevel();
-
         }
-
-
 
         public void test()
         {
             levelComplete();
         }
-
-
-
 
         public void update()
         {
@@ -305,9 +247,6 @@ namespace DungeonCrawl.Engine
             updateDarkness();
         }
 
-
-
-
         private void updateDarkness()
         {
             darkTimer++;
@@ -315,33 +254,25 @@ namespace DungeonCrawl.Engine
             {
                 float percent = (float)darkTimer / (float)darkLimit;
                 darkColor.A = (byte)(percent * 250);
-
             }
             else if (darkTimer < darkLimit)
             {
                 float percent = (float)darkTimer / (float)darkLimit;
                 darkColor.A = (byte)((250 - (percent * 250)) + 10);
-
             }
             else
             {
                 darkTimer = 0;
-
             }
-
         }
-
 
         private void playersDeath()
         {
             if (player.getHealth() <= 0)
             {
                 screenManager.addScreen(new GameOverScreen(gameScreen, screenManager, this));
-
-
             }
         }
-
 
         private void updateBarSliders()
         {
@@ -365,15 +296,13 @@ namespace DungeonCrawl.Engine
             }
         }
 
-
         private void updateCharacters()
         {
             foreach (Character c in characters)
             {
-                    c.update();
+                c.update();
             }
         }
-
 
         private void updateSplatter()
         {
@@ -381,12 +310,9 @@ namespace DungeonCrawl.Engine
             {
                 splatterTimer++;
 
-
                 float percent = (float)splatterTimer / (float)splatterLimit;
                 splatterColor.A = (byte)(255 - (percent * 250));
-  
             }
-
         }
 
         private void hasPlayerGotToExit()
@@ -396,12 +322,8 @@ namespace DungeonCrawl.Engine
             if (player.getHitBox().Intersects(exitBox))
             {
                 levelComplete();
-
             }
         }
-
-
-
 
 
         #region DRAW
@@ -412,14 +334,9 @@ namespace DungeonCrawl.Engine
             drawStatic(sb);
         }
 
-
-
-
         private void drawDynamic(SpriteBatch sb, GraphicsDevice device)
         {
-
             sb.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, camera.get_transformation(device));
-
 
             grid.draw(sb);
             drawLevelObjects(sb);
@@ -435,8 +352,6 @@ namespace DungeonCrawl.Engine
             sb.End(); 
         }
 
-
-
         private void drawCharacters(SpriteBatch sb)
         {
             foreach (Character c in characters)
@@ -445,7 +360,6 @@ namespace DungeonCrawl.Engine
             }
         }
 
-
         private void drawTreasure(SpriteBatch sb)
         {
             foreach (Treasure t in treasure)
@@ -453,7 +367,6 @@ namespace DungeonCrawl.Engine
                 t.draw(sb);
             }
         }
-
 
         private void drawLevelObjects(SpriteBatch sb)
         {
@@ -466,7 +379,6 @@ namespace DungeonCrawl.Engine
             }
         }
 
-
         private void drawLevelObjectsOver(SpriteBatch sb)
         {
             foreach (LevelObject levelObject in levelObjects)
@@ -476,8 +388,6 @@ namespace DungeonCrawl.Engine
                     levelObject.draw(sb);
                 }
             }
-
-
         }
 
 
@@ -494,19 +404,16 @@ namespace DungeonCrawl.Engine
             sb.End();
         }
 
-
         private void drawDarkness(SpriteBatch sb)
         {
             sb.Draw(darknessBorder, Vector2.Zero, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 1);
             sb.Draw(darkness, Vector2.Zero, null, darkColor, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 1);
         }
 
-
         private void drawBarSliders(SpriteBatch sb)
         {
             staminaBar.draw(sb);
             manaBar.draw(sb);
-
         }
 
         private void drawSplatter(SpriteBatch sb)
@@ -524,6 +431,5 @@ namespace DungeonCrawl.Engine
         }
 
         #endregion
-
     }
 }
