@@ -12,52 +12,22 @@ namespace DungeonCrawl.Menu.Screens
 {
     class AboutMenuScreen : GameScreen
     {
-
         private Texture2D backgroundTexture;
-
-
-
-
-
-
-
 
         public AboutMenuScreen(ScreenManager s) : base(s)
         {
             sManager = s;
-
-
         }
 
-
-
         public override void load(ContentManager content)
-	{
-		
-		
-	
-
+        {
+        
             //Load Background
-        backgroundTexture = content.Load<Texture2D>("Menu//HelpMenu");
-
-
-    
-
-
-
-	}
-
-
-
-
-
-
+            backgroundTexture = content.Load<Texture2D>("Menu//HelpMenu");
+        }
 
         public override void update()
         {
-
-
-
             if (sManager.input.IsOldPress(Keys.Escape))
             {
                 MainData.soundBank.PlayCue("menuClick");
@@ -71,56 +41,16 @@ namespace DungeonCrawl.Menu.Screens
             }
 
             input();
-
         }
-
-
-
-     
-
-
 
         public void input()
         {
 
-
-            //check for button press
-
-
-
         }
-
-
-
-
-
-      
-
-
 
         public override void draw(SpriteBatch sb)
         {
-
             sb.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 1);
-
-
-  
-
-            // sb.DrawString(sManager.font, "Created By Stewart Taylor ", new Vector2(500, 300), Color.White);
-
-         
-
-
-
-
         }
-
-
     }
 }
-
-    
-
-
-
-
