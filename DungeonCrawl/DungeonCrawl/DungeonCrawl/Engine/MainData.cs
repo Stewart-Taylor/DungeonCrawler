@@ -8,15 +8,10 @@ namespace DungeonCrawl
 {
     class MainData
     {
-
-
-
         public static bool developerMode = false;
         public static bool xboxMode = true;
         public static bool rumbleOn = true;
         public static bool fullScreen = true;
-
-
 
         //AUDIO
         public static AudioEngine audioEngine;
@@ -24,9 +19,6 @@ namespace DungeonCrawl
         public static SoundBank soundBank;
 
         public static AudioCategory soundEffects;
-       // public static AudioCategory music;
-
-     
-
+        // public static AudioCategory music;
     }
 }
