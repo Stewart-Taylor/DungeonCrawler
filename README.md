@@ -1,7 +1,8 @@
 DungeonCrawler
 ==============
 
-A game I created in two weeks for a class back in University. Feel free to learn from it.
+A prototype game I created in two weeks for a class back in University. It was made using C# and XNA.
 
-##Gameplay video
-https://www.youtube.com/watch?v=Y9CeNpv_AZ0
+## Gameplay video
+
+[![Gameplay video](https://img.youtube.com/vi/Y9CeNpv_AZ0/0.jpg)](https://www.youtube.com/watch?v=Y9CeNpv_AZ0)
